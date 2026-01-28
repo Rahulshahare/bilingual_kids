@@ -34,19 +34,6 @@ class WordCard extends StatelessWidget {
         fit: BoxFit.contain,
         semanticsLabel: word.native,
         placeholderBuilder: (context) => const Center(child: CircularProgressIndicator()),
-        errorBuilder: (context, error, stackTrace) {
-          print('Error loading SVG asset: $imagePath -> $error');
-          return Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                Icon(Icons.broken_image, size: 64, color: Colors.grey),
-                SizedBox(height: 8),
-                Text('SVG not found', textAlign: TextAlign.center),
-              ],
-            ),
-          );
-        },
       );
     } else {
       imageWidget = Image.asset(
