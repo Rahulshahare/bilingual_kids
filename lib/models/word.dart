@@ -19,7 +19,7 @@ class Word extends HiveObject {
   @HiveField(4)
   final String audioEnglish;
 
-  const Word({
+  Word({
     required this.native,
     required this.english,
     required this.image,
