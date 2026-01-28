@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import '../models/word.dart';
 
 class AlphabetsProvider extends ChangeNotifier {
+    
   List<Word> _letters = [];
   int _currentIndex = 0;
 

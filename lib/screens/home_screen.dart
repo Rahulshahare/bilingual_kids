@@ -43,8 +43,7 @@ class HomeScreen extends StatelessWidget {
             ElevatedButton.icon(
               icon: const Icon(Icons.abc),
               label: const Text('Learn Alphabet'),
-              onPressed: () async {
-                await Provider.of<AlphabetsProvider>(context, listen: false).loadCourse();
+              onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AlphabetsLearnScreen()));
               },
             ),

@@ -24,10 +24,6 @@ class AudioHelper {
 
       // Prepare the relative path for AssetSource (audioplayers expects path relative to assets/)
       var relative = checkKey.replaceFirst(RegExp(r'^assets/'), '');
-      // Ensure it points into the audio/ subfolder
-      if (!relative.startsWith('audio/')) {
-        relative = 'audio/$relative';
-      }
 
       // Stop any currently playing audio
       try {
