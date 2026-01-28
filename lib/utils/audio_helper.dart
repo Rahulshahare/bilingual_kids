@@ -6,9 +6,7 @@ class AudioHelper {
 
   static Future<void> playAsset(String assetPath) async {
     try {
-      final byteData = await rootBundle.load(assetPath);
-      final bytes = byteData.buffer.asUint8List();
-      await _player.play(BytesSource(bytes));
+      await _player.play(AssetSource(assetPath));
     } catch (e) {
       // ignore errors in demo
     }

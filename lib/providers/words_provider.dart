@@ -11,6 +11,10 @@ class WordsProvider extends ChangeNotifier {
 
   List<Word> get words => _words;
   int get currentIndex => _currentIndex;
+  set currentIndex(int value) {
+    _currentIndex = value;
+    notifyListeners();
+  }
   Word get currentWord => _words[_currentIndex];
 
   Future<void> loadLocal() async {
