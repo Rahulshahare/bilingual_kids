@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../models/word.dart';
 import '../utils/audio_helper.dart';
 
@@ -19,6 +20,35 @@ class WordCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final imagePath = _ensureAssetImage(word.image);
 
+    Widget imageWidget;
+    if (imagePath.toLowerCase().endsWith('.svg')) {
+      imageWidget = SvgPicture.asset(
+        imagePath,
+        fit: BoxFit.contain,
+        semanticsLabel: word.native,
+        placeholderBuilder: (context) => const Center(child: CircularProgressIndicator()),
+      );
+    } else {
+      imageWidget = Image.asset(
+        imagePath,
+        fit: BoxFit.contain,
+        errorBuilder: (context, error, stack) {
+          // ignore: avoid_print
+          print('Failed to load image asset: $imagePath -> $error');
+          return Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                Icon(Icons.broken_image, size: 64, color: Colors.grey),
+                SizedBox(height: 8),
+                Text('Image not found', textAlign: TextAlign.center),
+              ],
+            ),
+          );
+        },
+      );
+    }
+
     return Card(
       margin: const EdgeInsets.all(24),
       elevation: 6,
@@ -28,26 +58,7 @@ class WordCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.contain,
-                errorBuilder: (context, error, stack) {
-                  // ignore: avoid_print
-                  print('Failed to load image asset: $imagePath -> $error');
-                  return Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: const [
-                        Icon(Icons.broken_image, size: 64, color: Colors.grey),
-                        SizedBox(height: 8),
-                        Text('Image not found', textAlign: TextAlign.center),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
+            Expanded(child: imageWidget),
             const SizedBox(height: 16),
             Text(
               word.native,
