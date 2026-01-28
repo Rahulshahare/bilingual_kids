@@ -6,8 +6,19 @@ class WordCard extends StatelessWidget {
   final Word word;
   const WordCard({super.key, required this.word});
 
+  String _ensureAssetImage(String path) {
+    if (path.startsWith('assets/')) return path;
+    if (path.startsWith('/')) return 'assets${path}';
+    if (path.startsWith('images/') || path.startsWith('audio/')) {
+      return 'assets/$path';
+    }
+    return 'assets/images/$path';
+  }
+
   @override
   Widget build(BuildContext context) {
+    final imagePath = _ensureAssetImage(word.image);
+
     return Card(
       margin: const EdgeInsets.all(24),
       elevation: 6,
@@ -19,8 +30,22 @@ class WordCard extends StatelessWidget {
           children: [
             Expanded(
               child: Image.asset(
-                word.image,
+                imagePath,
                 fit: BoxFit.contain,
+                errorBuilder: (context, error, stack) {
+                  // ignore: avoid_print
+                  print('Failed to load image asset: $imagePath -> $error');
+                  return Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: const [
+                        Icon(Icons.broken_image, size: 64, color: Colors.grey),
+                        SizedBox(height: 8),
+                        Text('Image not found', textAlign: TextAlign.center),
+                      ],
+                    ),
+                  );
+                },
               ),
             ),
             const SizedBox(height: 16),
@@ -40,13 +65,21 @@ class WordCard extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.volume_up, color: Colors.deepPurple),
                   tooltip: 'Hear native',
-                  onPressed: () => AudioHelper.playAsset(word.audioNative),
+                  onPressed: () {
+                    if (word.audioNative.isNotEmpty) {
+                      AudioHelper.playAsset(word.audioNative);
+                    }
+                  },
                 ),
                 const SizedBox(width: 24),
                 IconButton(
                   icon: const Icon(Icons.volume_up, color: Colors.orange),
                   tooltip: 'Hear English',
-                  onPressed: () => AudioHelper.playAsset(word.audioEnglish),
+                  onPressed: () {
+                    if (word.audioEnglish.isNotEmpty) {
+                      AudioHelper.playAsset(word.audioEnglish);
+                    }
+                  },
                 ),
               ],
             ),

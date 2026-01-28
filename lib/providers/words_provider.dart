@@ -22,9 +22,17 @@ class WordsProvider extends ChangeNotifier {
       final raw = await rootBundle.loadString('assets/data/words.json');
       final List<dynamic> jsonList = jsonDecode(raw);
       _words = jsonList.map((e) => Word.fromJson(e)).toList();
+
+      // Debug: print loaded words and paths to help find missing assets
+      for (var w in _words) {
+        // ignore: avoid_print
+        print('Loaded word: native=${w.native}, english=${w.english}, image=${w.image}, audioNative=${w.audioNative}, audioEnglish=${w.audioEnglish}');
+      }
+
       notifyListeners();
     } catch (e) {
-      // ignore
+      // ignore: avoid_print
+      print('Error loading local words: $e');
     }
   }
 
