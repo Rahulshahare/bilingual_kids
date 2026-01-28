@@ -19,7 +19,12 @@ class LearnScreen extends StatelessWidget {
         controller: PageController(initialPage: wordsProv.currentIndex),
         onPageChanged: (idx) {
           // update internal index via provider methods
-          wordsProv.currentIndex = idx;
+
+          set currentIndex(int idx) {
+            _currentIndex = idx;
+            notifyListeners();
+          }
+          // wordsProv.currentIndex = idx;
           progressProv.addSeenWord();
         },
         itemBuilder: (_, i) => WordCard(word: wordsProv.words[i]),
