@@ -16,6 +16,7 @@ class _AlphabetsLearnScreenState extends State<AlphabetsLearnScreen> {
     super.initState();
     // Load the course data once when the screen is initialized
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      print('Loading alphabets course...');
       Provider.of<AlphabetsProvider>(context, listen: false).loadCourse();
     });
   }
@@ -23,6 +24,7 @@ class _AlphabetsLearnScreenState extends State<AlphabetsLearnScreen> {
   @override
   Widget build(BuildContext context) {
     final alphProv = Provider.of<AlphabetsProvider>(context);
+    print('Building AlphabetsLearnScreen, letters length: ${alphProv.letters.length}');
 
     return Scaffold(
       appBar: AppBar(title: const Text('Learn Alphabet')),

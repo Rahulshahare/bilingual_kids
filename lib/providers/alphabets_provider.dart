@@ -17,6 +17,7 @@ class AlphabetsProvider extends ChangeNotifier {
       final raw = await rootBundle.loadString('assets/data/alphabets_course.json');
       final List<dynamic> jsonList = jsonDecode(raw);
       _letters = jsonList.map((e) => Word.fromJson(e)).toList();
+      print('Loaded ${_letters.length} alphabet letters');
       notifyListeners();
     } catch (e) {
       // ignore: avoid_print

@@ -8,7 +8,13 @@ class WordCard extends StatelessWidget {
   const WordCard({super.key, required this.word});
 
   String _ensureAssetImage(String path) {
-    if (path.startsWith('assets/')) return path;
+    if (path.startsWith('assets/')) {
+      // For SVG, return path relative to assets/
+      if (path.toLowerCase().endsWith('.svg')) {
+        return path.replaceFirst('assets/', '');
+      }
+      return path;
+    }
     if (path.startsWith('/')) return 'assets${path}';
     if (path.startsWith('images/') || path.startsWith('audio/')) {
       return 'assets/$path';
@@ -19,6 +25,7 @@ class WordCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imagePath = _ensureAssetImage(word.image);
+    print('WordCard for ${word.english}: original image path: ${word.image}, ensured: $imagePath');
 
     Widget imageWidget;
     if (imagePath.toLowerCase().endsWith('.svg')) {
@@ -27,6 +34,19 @@ class WordCard extends StatelessWidget {
         fit: BoxFit.contain,
         semanticsLabel: word.native,
         placeholderBuilder: (context) => const Center(child: CircularProgressIndicator()),
+        errorBuilder: (context, error, stackTrace) {
+          print('Error loading SVG asset: $imagePath -> $error');
+          return Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                Icon(Icons.broken_image, size: 64, color: Colors.grey),
+                SizedBox(height: 8),
+                Text('SVG not found', textAlign: TextAlign.center),
+              ],
+            ),
+          );
+        },
       );
     } else {
       imageWidget = Image.asset(
