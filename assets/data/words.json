@@ -1,0 +1,16 @@
+[
+  {
+    "native": "सफरचंद",
+    "english": "Apple",
+    "image": "assets/images/Apple_eng.jpg",
+    "audio_native": "assets/audio/Apple_mar.wav",
+    "audio_english": "assets/audio/Apple_eng.wav"
+  },
+  {
+    "native": "कुत्रा",
+    "english": "Dog",
+    "image": "assets/images/DOG_eng.jpg",
+    "audio_native": "assets/audio/Dog_mar.wav",
+    "audio_english": "assets/audio/Dog_eng.wav"
+  }
+]
