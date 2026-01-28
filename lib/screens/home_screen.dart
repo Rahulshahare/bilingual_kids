@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/words_provider.dart';
 import '../providers/progress_provider.dart';
+import '../providers/alphabets_provider.dart';
 import 'learn_screen.dart';
 import 'quiz_screen.dart';
+import 'alphabets_learn_screen.dart';
 import '../widgets/star_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -35,6 +37,15 @@ class HomeScreen extends StatelessWidget {
               onPressed: () async {
                 await Provider.of<WordsProvider>(context, listen: false).loadLocal();
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) => const QuizScreen()));
+              },
+            ),
+            const SizedBox(height: 12),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.abc),
+              label: const Text('Learn Alphabet'),
+              onPressed: () async {
+                await Provider.of<AlphabetsProvider>(context, listen: false).loadCourse();
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AlphabetsLearnScreen()));
               },
             ),
           ],

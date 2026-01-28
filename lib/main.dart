@@ -6,6 +6,7 @@ import 'models/word.dart';
 import 'models/progress.dart';
 import 'providers/words_provider.dart';
 import 'providers/progress_provider.dart';
+import 'providers/alphabets_provider.dart';
 import 'screens/home_screen.dart';
 
 void main() async {
@@ -19,6 +20,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => ProgressProvider()..init()),
         ChangeNotifierProvider(create: (_) => WordsProvider()),
+        ChangeNotifierProvider(create: (_) => AlphabetsProvider()),
       ],
       child: const MyApp(),
     ),
