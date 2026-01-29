@@ -4,50 +4,33 @@ import 'package:flutter/services.dart';
 class AudioHelper {
   static final AudioPlayer _player = AudioPlayer();
 
-  /// Play a bundled asset (e.g. assets/audio/apfel.mp3 or audio/apfel.mp3 or apfel.mp3)
+  /// Play a bundled asset (e.g. assets/audio/apple_en.wav)
   static Future<void> playAsset(String assetPath) async {
     try {
-      // Determine the key to check in the asset bundle
-      String checkKey = assetPath;
-      if (!checkKey.startsWith('assets/')) {
-        checkKey = 'assets/$checkKey';
+      // Ensure the path starts with 'assets/' for checking in the bundle
+      String fullPath = assetPath;
+      if (!fullPath.startsWith('assets/')) {
+        fullPath = 'assets/$fullPath';
       }
 
-      // Try to load the asset, try .wav if .mp3 doesn't exist
+      // Verify the asset exists in the bundle
       try {
-        await rootBundle.load(checkKey);
+        await rootBundle.load(fullPath);
       } catch (e) {
-        // Try with .wav extension if .mp3 failed
-        if (checkKey.toLowerCase().endsWith('.mp3')) {
-          final wavKey = checkKey.substring(0, checkKey.length - 4) + '.wav';
-          try {
-            await rootBundle.load(wavKey);
-            checkKey = wavKey; // Use the wav path
-          } catch (wavError) {
-            // ignore: avoid_print
-            print('Audio asset not found in bundle: $checkKey or $wavKey');
-            return;
-          }
-        } else {
-          // ignore: avoid_print
-          print('Audio asset not found in bundle: $checkKey');
-          return;
-        }
+        // ignore: avoid_print
+        print('Audio asset not found in bundle: $fullPath');
+        return;
       }
 
-      // Prepare the relative path for AssetSource (audioplayers expects path relative to assets/)
-      var relative = checkKey.replaceFirst(RegExp(r'^assets/'), '');
-      // Ensure it points into the audio/ subfolder
-      if (!relative.startsWith('audio/')) {
-        relative = 'audio/$relative';
-      }
+      // Prepare the path for AssetSource (audioplayers expects path relative to assets/)
+      final relativePath = fullPath.replaceFirst('assets/', '');
 
       // Stop any currently playing audio
       try {
         await _player.stop();
       } catch (_) {}
 
-      await _player.play(AssetSource(relative));
+      await _player.play(AssetSource(relativePath));
     } catch (e, st) {
       // ignore: avoid_print
       print('AudioHelper.playAsset error: $e\n$st');

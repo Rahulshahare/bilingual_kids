@@ -7,41 +7,50 @@ class WordCard extends StatelessWidget {
   final Word word;
   const WordCard({super.key, required this.word});
 
-  String _ensureAssetImage(String path) {
+  String _ensureAssetPath(String path) {
+    // If it's already a full asset path, return it as is
     if (path.startsWith('assets/')) {
-      // For SVG, return path relative to assets/
-      if (path.toLowerCase().endsWith('.svg')) {
-        return path.replaceFirst('assets/', '');
-      }
       return path;
     }
-    if (path.startsWith('/')) return 'assets${path}';
+    // Handle leading slash
+    if (path.startsWith('/')) {
+      return 'assets$path';
+    }
+    // Default to images folder if no folder specified
+    if (!path.contains('/')) {
+      return 'assets/images/$path';
+    }
+    // Prepend assets/ if it starts with images/ or audio/
     if (path.startsWith('images/') || path.startsWith('audio/')) {
       return 'assets/$path';
     }
-    return 'assets/images/$path';
+    return 'assets/$path';
   }
 
   @override
   Widget build(BuildContext context) {
-    final imagePath = _ensureAssetImage(word.image);
-    print('WordCard for ${word.english}: original image path: ${word.image}, ensured: $imagePath');
+    final assetPath = _ensureAssetPath(word.image);
+    // flutter_svg expects path relative to assets/ if using SvgPicture.asset
+    final svgPath = assetPath.replaceFirst('assets/', '');
+
+    // ignore: avoid_print
+    print('WordCard for ${word.english}: original image path: ${word.image}, ensured: $assetPath');
 
     Widget imageWidget;
-    if (imagePath.toLowerCase().endsWith('.svg')) {
+    if (assetPath.toLowerCase().endsWith('.svg')) {
       imageWidget = SvgPicture.asset(
-        imagePath,
+        svgPath,
         fit: BoxFit.contain,
         semanticsLabel: word.native,
         placeholderBuilder: (context) => const Center(child: CircularProgressIndicator()),
       );
     } else {
       imageWidget = Image.asset(
-        imagePath,
+        assetPath,
         fit: BoxFit.contain,
         errorBuilder: (context, error, stack) {
           // ignore: avoid_print
-          print('Failed to load image asset: $imagePath -> $error');
+          print('Failed to load image asset: $assetPath -> $error');
           return Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,

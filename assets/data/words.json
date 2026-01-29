@@ -3,14 +3,14 @@
     "native": "सफरचंद",
     "english": "Apple",
     "image": "assets/images/apple.svg",
-    "audio_native": "assets/audio/apfel.mp3",
-    "audio_english": "assets/audio/apple_en.mp3"
+    "audio_native": "assets/audio/Apple_mar.wav",
+    "audio_english": "assets/audio/Apple_eng.wav"
   },
   {
     "native": "कुत्रा",
     "english": "Dog",
     "image": "assets/images/DOG_eng.jpg",
-    "audio_native": "assets/audio/hund.mp3",
-    "audio_english": "assets/audio/dog_en.mp3"
+    "audio_native": "assets/audio/Dog_mar.wav",
+    "audio_english": "assets/audio/Dog_eng.wav"
   }
 ]
