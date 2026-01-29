@@ -13,13 +13,26 @@ class AudioHelper {
         checkKey = 'assets/$checkKey';
       }
 
-      // Try to load the asset to ensure it exists
+      // Try to load the asset, try .wav if .mp3 doesn't exist
       try {
         await rootBundle.load(checkKey);
       } catch (e) {
-        // ignore: avoid_print
-        print('Audio asset not found in bundle: $checkKey');
-        return;
+        // Try with .wav extension if .mp3 failed
+        if (checkKey.toLowerCase().endsWith('.mp3')) {
+          final wavKey = checkKey.substring(0, checkKey.length - 4) + '.wav';
+          try {
+            await rootBundle.load(wavKey);
+            checkKey = wavKey; // Use the wav path
+          } catch (wavError) {
+            // ignore: avoid_print
+            print('Audio asset not found in bundle: $checkKey or $wavKey');
+            return;
+          }
+        } else {
+          // ignore: avoid_print
+          print('Audio asset not found in bundle: $checkKey');
+          return;
+        }
       }
 
       // Prepare the relative path for AssetSource (audioplayers expects path relative to assets/)
