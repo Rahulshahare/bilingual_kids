@@ -30,8 +30,6 @@ class WordCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final assetPath = _ensureAssetPath(word.image);
-    // flutter_svg expects path relative to assets/ if using SvgPicture.asset
-    final svgPath = assetPath.replaceFirst('assets/', '');
 
     // ignore: avoid_print
     print('WordCard for ${word.english}: original image path: ${word.image}, ensured: $assetPath');
@@ -39,7 +37,7 @@ class WordCard extends StatelessWidget {
     Widget imageWidget;
     if (assetPath.toLowerCase().endsWith('.svg')) {
       imageWidget = SvgPicture.asset(
-        svgPath,
+        assetPath,
         fit: BoxFit.contain,
         semanticsLabel: word.native,
         placeholderBuilder: (context) => const Center(child: CircularProgressIndicator()),

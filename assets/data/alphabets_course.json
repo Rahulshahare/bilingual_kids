@@ -1,28 +1,210 @@
 [
-  {"id":"A","native":"A","english":"A","image":"assets/images/alphabets/a.svg","nativeAudio":"assets/audio/alphabets/a.mp3","englishAudio":"assets/audio/alphabets/a.mp3"},
-  {"id":"B","native":"B","english":"B","image":"assets/images/alphabets/b.svg","nativeAudio":"assets/audio/alphabets/b.mp3","englishAudio":"assets/audio/alphabets/b.mp3"},
-  {"id":"C","native":"C","english":"C","image":"assets/images/alphabets/c.svg","nativeAudio":"assets/audio/alphabets/c.mp3","englishAudio":"assets/audio/alphabets/c.mp3"},
-  {"id":"D","native":"D","english":"D","image":"assets/images/alphabets/d.svg","nativeAudio":"assets/audio/alphabets/d.mp3","englishAudio":"assets/audio/alphabets/d.mp3"},
-  {"id":"E","native":"E","english":"E","image":"assets/images/alphabets/e.svg","nativeAudio":"assets/audio/alphabets/e.mp3","englishAudio":"assets/audio/alphabets/e.mp3"},
-  {"id":"F","native":"F","english":"F","image":"assets/images/alphabets/f.svg","nativeAudio":"assets/audio/alphabets/f.mp3","englishAudio":"assets/audio/alphabets/f.mp3"},
-  {"id":"G","native":"G","english":"G","image":"assets/images/alphabets/g.svg","nativeAudio":"assets/audio/alphabets/g.mp3","englishAudio":"assets/audio/alphabets/g.mp3"},
-  {"id":"H","native":"H","english":"H","image":"assets/images/alphabets/h.svg","nativeAudio":"assets/audio/alphabets/h.mp3","englishAudio":"assets/audio/alphabets/h.mp3"},
-  {"id":"I","native":"I","english":"I","image":"assets/images/alphabets/i.svg","nativeAudio":"assets/audio/alphabets/i.mp3","englishAudio":"assets/audio/alphabets/i.mp3"},
-  {"id":"J","native":"J","english":"J","image":"assets/images/alphabets/j.svg","nativeAudio":"assets/audio/alphabets/j.mp3","englishAudio":"assets/audio/alphabets/j.mp3"},
-  {"id":"K","native":"K","english":"K","image":"assets/images/alphabets/k.svg","nativeAudio":"assets/audio/alphabets/k.mp3","englishAudio":"assets/audio/alphabets/k.mp3"},
-  {"id":"L","native":"L","english":"L","image":"assets/images/alphabets/l.svg","nativeAudio":"assets/audio/alphabets/l.mp3","englishAudio":"assets/audio/alphabets/l.mp3"},
-  {"id":"M","native":"M","english":"M","image":"assets/images/alphabets/m.svg","nativeAudio":"assets/audio/alphabets/m.mp3","englishAudio":"assets/audio/alphabets/m.mp3"},
-  {"id":"N","native":"N","english":"N","image":"assets/images/alphabets/n.svg","nativeAudio":"assets/audio/alphabets/n.mp3","englishAudio":"assets/audio/alphabets/n.mp3"},
-  {"id":"O","native":"O","english":"O","image":"assets/images/alphabets/o.svg","nativeAudio":"assets/audio/alphabets/o.mp3","englishAudio":"assets/audio/alphabets/o.mp3"},
-  {"id":"P","native":"P","english":"P","image":"assets/images/alphabets/p.svg","nativeAudio":"assets/audio/alphabets/p.mp3","englishAudio":"assets/audio/alphabets/p.mp3"},
-  {"id":"Q","native":"Q","english":"Q","image":"assets/images/alphabets/q.svg","nativeAudio":"assets/audio/alphabets/q.mp3","englishAudio":"assets/audio/alphabets/q.mp3"},
-  {"id":"R","native":"R","english":"R","image":"assets/images/alphabets/r.svg","nativeAudio":"assets/audio/alphabets/r.mp3","englishAudio":"assets/audio/alphabets/r.mp3"},
-  {"id":"S","native":"S","english":"S","image":"assets/images/alphabets/s.svg","nativeAudio":"assets/audio/alphabets/s.mp3","englishAudio":"assets/audio/alphabets/s.mp3"},
-  {"id":"T","native":"T","english":"T","image":"assets/images/alphabets/t.svg","nativeAudio":"assets/audio/alphabets/t.mp3","englishAudio":"assets/audio/alphabets/t.mp3"},
-  {"id":"U","native":"U","english":"U","image":"assets/images/alphabets/u.svg","nativeAudio":"assets/audio/alphabets/u.mp3","englishAudio":"assets/audio/alphabets/u.mp3"},
-  {"id":"V","native":"V","english":"V","image":"assets/images/alphabets/v.svg","nativeAudio":"assets/audio/alphabets/v.mp3","englishAudio":"assets/audio/alphabets/v.mp3"},
-  {"id":"W","native":"W","english":"W","image":"assets/images/alphabets/w.svg","nativeAudio":"assets/audio/alphabets/w.mp3","englishAudio":"assets/audio/alphabets/w.mp3"},
-  {"id":"X","native":"X","english":"X","image":"assets/images/alphabets/x.svg","nativeAudio":"assets/audio/alphabets/x.mp3","englishAudio":"assets/audio/alphabets/x.mp3"},
-  {"id":"Y","native":"Y","english":"Y","image":"assets/images/alphabets/y.svg","nativeAudio":"assets/audio/alphabets/y.mp3","englishAudio":"assets/audio/alphabets/y.mp3"},
-  {"id":"Z","native":"Z","english":"Z","image":"assets/images/alphabets/z.svg","nativeAudio":"assets/audio/alphabets/z.mp3","englishAudio":"assets/audio/alphabets/z.mp3"}
+  {
+    "id": "A",
+    "native": "A",
+    "english": "A",
+    "image": "assets/images/alphabets/a.svg",
+    "audio_native": "assets/audio/alphabets/a.mp3",
+    "audio_english": "assets/audio/alphabets/a.mp3"
+  },
+  {
+    "id": "B",
+    "native": "B",
+    "english": "B",
+    "image": "assets/images/alphabets/b.svg",
+    "audio_native": "assets/audio/alphabets/b.mp3",
+    "audio_english": "assets/audio/alphabets/b.mp3"
+  },
+  {
+    "id": "C",
+    "native": "C",
+    "english": "C",
+    "image": "assets/images/alphabets/c.svg",
+    "audio_native": "assets/audio/alphabets/c.mp3",
+    "audio_english": "assets/audio/alphabets/c.mp3"
+  },
+  {
+    "id": "D",
+    "native": "D",
+    "english": "D",
+    "image": "assets/images/alphabets/d.svg",
+    "audio_native": "assets/audio/alphabets/d.mp3",
+    "audio_english": "assets/audio/alphabets/d.mp3"
+  },
+  {
+    "id": "E",
+    "native": "E",
+    "english": "E",
+    "image": "assets/images/alphabets/e.svg",
+    "audio_native": "assets/audio/alphabets/e.mp3",
+    "audio_english": "assets/audio/alphabets/e.mp3"
+  },
+  {
+    "id": "F",
+    "native": "F",
+    "english": "F",
+    "image": "assets/images/alphabets/f.svg",
+    "audio_native": "assets/audio/alphabets/f.mp3",
+    "audio_english": "assets/audio/alphabets/f.mp3"
+  },
+  {
+    "id": "G",
+    "native": "G",
+    "english": "G",
+    "image": "assets/images/alphabets/g.svg",
+    "audio_native": "assets/audio/alphabets/g.mp3",
+    "audio_english": "assets/audio/alphabets/g.mp3"
+  },
+  {
+    "id": "H",
+    "native": "H",
+    "english": "H",
+    "image": "assets/images/alphabets/h.svg",
+    "audio_native": "assets/audio/alphabets/h.mp3",
+    "audio_english": "assets/audio/alphabets/h.mp3"
+  },
+  {
+    "id": "I",
+    "native": "I",
+    "english": "I",
+    "image": "assets/images/alphabets/i.svg",
+    "audio_native": "assets/audio/alphabets/i.mp3",
+    "audio_english": "assets/audio/alphabets/i.mp3"
+  },
+  {
+    "id": "J",
+    "native": "J",
+    "english": "J",
+    "image": "assets/images/alphabets/j.svg",
+    "audio_native": "assets/audio/alphabets/j.mp3",
+    "audio_english": "assets/audio/alphabets/j.mp3"
+  },
+  {
+    "id": "K",
+    "native": "K",
+    "english": "K",
+    "image": "assets/images/alphabets/k.svg",
+    "audio_native": "assets/audio/alphabets/k.mp3",
+    "audio_english": "assets/audio/alphabets/k.mp3"
+  },
+  {
+    "id": "L",
+    "native": "L",
+    "english": "L",
+    "image": "assets/images/alphabets/l.svg",
+    "audio_native": "assets/audio/alphabets/l.mp3",
+    "audio_english": "assets/audio/alphabets/l.mp3"
+  },
+  {
+    "id": "M",
+    "native": "M",
+    "english": "M",
+    "image": "assets/images/alphabets/m.svg",
+    "audio_native": "assets/audio/alphabets/m.mp3",
+    "audio_english": "assets/audio/alphabets/m.mp3"
+  },
+  {
+    "id": "N",
+    "native": "N",
+    "english": "N",
+    "image": "assets/images/alphabets/n.svg",
+    "audio_native": "assets/audio/alphabets/n.mp3",
+    "audio_english": "assets/audio/alphabets/n.mp3"
+  },
+  {
+    "id": "O",
+    "native": "O",
+    "english": "O",
+    "image": "assets/images/alphabets/o.svg",
+    "audio_native": "assets/audio/alphabets/o.mp3",
+    "audio_english": "assets/audio/alphabets/o.mp3"
+  },
+  {
+    "id": "P",
+    "native": "P",
+    "english": "P",
+    "image": "assets/images/alphabets/p.svg",
+    "audio_native": "assets/audio/alphabets/p.mp3",
+    "audio_english": "assets/audio/alphabets/p.mp3"
+  },
+  {
+    "id": "Q",
+    "native": "Q",
+    "english": "Q",
+    "image": "assets/images/alphabets/q.svg",
+    "audio_native": "assets/audio/alphabets/q.mp3",
+    "audio_english": "assets/audio/alphabets/q.mp3"
+  },
+  {
+    "id": "R",
+    "native": "R",
+    "english": "R",
+    "image": "assets/images/alphabets/r.svg",
+    "audio_native": "assets/audio/alphabets/r.mp3",
+    "audio_english": "assets/audio/alphabets/r.mp3"
+  },
+  {
+    "id": "S",
+    "native": "S",
+    "english": "S",
+    "image": "assets/images/alphabets/s.svg",
+    "audio_native": "assets/audio/alphabets/s.mp3",
+    "audio_english": "assets/audio/alphabets/s.mp3"
+  },
+  {
+    "id": "T",
+    "native": "T",
+    "english": "T",
+    "image": "assets/images/alphabets/t.svg",
+    "audio_native": "assets/audio/alphabets/t.mp3",
+    "audio_english": "assets/audio/alphabets/t.mp3"
+  },
+  {
+    "id": "U",
+    "native": "U",
+    "english": "U",
+    "image": "assets/images/alphabets/u.svg",
+    "audio_native": "assets/audio/alphabets/u.mp3",
+    "audio_english": "assets/audio/alphabets/u.mp3"
+  },
+  {
+    "id": "V",
+    "native": "V",
+    "english": "V",
+    "image": "assets/images/alphabets/v.svg",
+    "audio_native": "assets/audio/alphabets/v.mp3",
+    "audio_english": "assets/audio/alphabets/v.mp3"
+  },
+  {
+    "id": "W",
+    "native": "W",
+    "english": "W",
+    "image": "assets/images/alphabets/w.svg",
+    "audio_native": "assets/audio/alphabets/w.mp3",
+    "audio_english": "assets/audio/alphabets/w.mp3"
+  },
+  {
+    "id": "X",
+    "native": "X",
+    "english": "X",
+    "image": "assets/images/alphabets/x.svg",
+    "audio_native": "assets/audio/alphabets/x.mp3",
+    "audio_english": "assets/audio/alphabets/x.mp3"
+  },
+  {
+    "id": "Y",
+    "native": "Y",
+    "english": "Y",
+    "image": "assets/images/alphabets/y.svg",
+    "audio_native": "assets/audio/alphabets/y.mp3",
+    "audio_english": "assets/audio/alphabets/y.mp3"
+  },
+  {
+    "id": "Z",
+    "native": "Z",
+    "english": "Z",
+    "image": "assets/images/alphabets/z.svg",
+    "audio_native": "assets/audio/alphabets/z.mp3",
+    "audio_english": "assets/audio/alphabets/z.mp3"
+  }
 ]
