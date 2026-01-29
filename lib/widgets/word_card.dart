@@ -36,11 +36,29 @@ class WordCard extends StatelessWidget {
 
     Widget imageWidget;
     if (assetPath.toLowerCase().endsWith('.svg')) {
+      // Some versions of flutter_svg prefer paths without 'assets/' prefix
+      final relativePath = assetPath.replaceFirst('assets/', '');
+      
       imageWidget = SvgPicture.asset(
-        assetPath,
+        relativePath,
         fit: BoxFit.contain,
         semanticsLabel: word.native,
         placeholderBuilder: (context) => const Center(child: CircularProgressIndicator()),
+        errorBuilder: (context, error, stackTrace) {
+          // Fallback to full path if relative fails
+          return SvgPicture.asset(
+            assetPath,
+            fit: BoxFit.contain,
+            placeholderBuilder: (context) => const Center(child: CircularProgressIndicator()),
+            errorBuilder: (context, error2, stackTrace2) {
+              // ignore: avoid_print
+              print('SVG Load Error for $assetPath: $error2');
+              return const Center(
+                child: Icon(Icons.broken_image, size: 64, color: Colors.grey),
+              );
+            },
+          );
+        },
       );
     } else {
       imageWidget = Image.asset(

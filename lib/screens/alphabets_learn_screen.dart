@@ -11,14 +11,25 @@ class AlphabetsLearnScreen extends StatefulWidget {
 }
 
 class _AlphabetsLearnScreenState extends State<AlphabetsLearnScreen> {
+  late PageController _pageController;
+
   @override
   void initState() {
     super.initState();
+    final alphProv = Provider.of<AlphabetsProvider>(context, listen: false);
+    _pageController = PageController(initialPage: alphProv.currentIndex);
+
     // Load the course data once when the screen is initialized
     WidgetsBinding.instance.addPostFrameCallback((_) {
       print('Loading alphabets course...');
-      Provider.of<AlphabetsProvider>(context, listen: false).loadCourse();
+      alphProv.loadCourse();
     });
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -32,7 +43,7 @@ class _AlphabetsLearnScreenState extends State<AlphabetsLearnScreen> {
           ? const Center(child: CircularProgressIndicator())
           : PageView.builder(
               itemCount: alphProv.letters.length,
-              controller: PageController(initialPage: alphProv.currentIndex),
+              controller: _pageController,
               onPageChanged: (idx) => alphProv.goTo(idx),
               itemBuilder: (_, i) => WordCard(word: alphProv.letters[i]),
             ),
