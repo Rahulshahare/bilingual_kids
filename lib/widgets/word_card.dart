@@ -31,13 +31,10 @@ class WordCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final assetPath = _ensureAssetPath(word.image);
 
-    // ignore: avoid_print
     print('WordCard for ${word.english}: original image path: ${word.image}, ensured: $assetPath');
 
     Widget imageWidget;
     if (assetPath.toLowerCase().endsWith('.svg')) {
-      // flutter_svg 1.1.6 does not support errorBuilder.
-      // We use the full asset path which is standard for SvgPicture.asset.
       imageWidget = SvgPicture.asset(
         assetPath,
         fit: BoxFit.contain,
@@ -49,7 +46,6 @@ class WordCard extends StatelessWidget {
         assetPath,
         fit: BoxFit.contain,
         errorBuilder: (context, error, stack) {
-          // ignore: avoid_print
           print('Failed to load image asset: $assetPath -> $error');
           return Center(
             child: Column(

@@ -1,14 +1,16 @@
-import 'package:hive/hive.dart';
-
-part 'progress.g.dart';
-
-@HiveType(typeId: 1)
-class UserProgress extends HiveObject {
-  @HiveField(0)
+class UserProgress {
   int stars;
-
-  @HiveField(1)
   int completedWords;
 
   UserProgress({this.stars = 0, this.completedWords = 0});
+
+  factory UserProgress.fromJson(Map<String, dynamic> json) => UserProgress(
+        stars: json['stars'] ?? 0,
+        completedWords: json['completedWords'] ?? 0,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'stars': stars,
+        'completedWords': completedWords,
+      };
 }

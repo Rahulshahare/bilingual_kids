@@ -1,22 +1,8 @@
-import 'package:hive/hive.dart';
-
-part 'word.g.dart';
-
-@HiveType(typeId: 0)
-class Word extends HiveObject {
-  @HiveField(0)
+class Word {
   final String native;
-
-  @HiveField(1)
   final String english;
-
-  @HiveField(2)
   final String image;
-
-  @HiveField(3)
   final String audioNative;
-
-  @HiveField(4)
   final String audioEnglish;
 
   Word({

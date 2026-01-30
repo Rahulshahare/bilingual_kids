@@ -13,7 +13,15 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final progress = Provider.of<ProgressProvider>(context).progress;
+    final progressProvider = Provider.of<ProgressProvider>(context);
+    final progress = progressProvider.progress;
+    
+    if (!progressProvider.isInitialized) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+    
     return Scaffold(
       appBar: AppBar(title: const Text('Bilingual Kids')),
       body: Center(

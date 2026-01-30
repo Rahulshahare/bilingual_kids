@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/foundation.dart';
-import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 import '../models/word.dart';
 
@@ -15,36 +14,42 @@ class WordsProvider extends ChangeNotifier {
     _currentIndex = value;
     notifyListeners();
   }
-  Word get currentWord => _words[_currentIndex];
+  
+  Word? get currentWord {
+    if (_words.isEmpty || _currentIndex < 0 || _currentIndex >= _words.length) {
+      return null;
+    }
+    return _words[_currentIndex];
+  }
 
   Future<void> loadLocal() async {
     try {
       final raw = await rootBundle.loadString('assets/data/words.json');
       final List<dynamic> jsonList = jsonDecode(raw);
       _words = jsonList.map((e) => Word.fromJson(e)).toList();
+      _currentIndex = 0;
 
-      // Debug: print loaded words and paths to help find missing assets
       for (var w in _words) {
-        // ignore: avoid_print
         print('Loaded word: native=${w.native}, english=${w.english}, image=${w.image}, audioNative=${w.audioNative}, audioEnglish=${w.audioEnglish}');
       }
 
       notifyListeners();
     } catch (e) {
-      // ignore: avoid_print
       print('Error loading local words: $e');
     }
   }
 
   Future<void> loadRemote(String url) async {
-    final response = await http.get(Uri.parse(url));
-    if (response.statusCode == 200) {
-      final List<dynamic> jsonList = jsonDecode(response.body);
-      _words = jsonList.map((e) => Word.fromJson(e)).toList();
-      final box = await Hive.openBox<Word>('remote_words');
-      await box.clear();
-      await box.addAll(_words);
-      notifyListeners();
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        final List<dynamic> jsonList = jsonDecode(response.body);
+        _words = jsonList.map((e) => Word.fromJson(e)).toList();
+        _currentIndex = 0;
+        notifyListeners();
+      }
+    } catch (e) {
+      print('Error loading remote words: $e');
     }
   }
 
