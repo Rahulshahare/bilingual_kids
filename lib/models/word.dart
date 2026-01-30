@@ -1,4 +1,5 @@
 class Word {
+  final String id;
   final String native;
   final String english;
   final String image;
@@ -6,6 +7,7 @@ class Word {
   final String audioEnglish;
 
   Word({
+    required this.id,
     required this.native,
     required this.english,
     required this.image,
@@ -14,6 +16,7 @@ class Word {
   });
 
   factory Word.fromJson(Map<String, dynamic> json) => Word(
+        id: json['id'] ?? '',
         native: json['native'] ?? '',
         english: json['english'] ?? '',
         image: json['image'] ?? '',
@@ -22,6 +25,7 @@ class Word {
       );
 
   Map<String, dynamic> toJson() => {
+        'id': id,
         'native': native,
         'english': english,
         'image': image,

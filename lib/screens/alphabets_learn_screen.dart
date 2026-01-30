@@ -35,11 +35,11 @@ class _AlphabetsLearnScreenState extends State<AlphabetsLearnScreen> {
   @override
   Widget build(BuildContext context) {
     final alphProv = Provider.of<AlphabetsProvider>(context);
-    print('Building AlphabetsLearnScreen, letters length: ${alphProv.letters.length}');
+    print('Building AlphabetsLearnScreen, letters length: ${alphProv.letters.length}, isLoading:${alphProv.isLoading}');
 
     return Scaffold(
       appBar: AppBar(title: const Text('Learn Alphabet')),
-      body: alphProv.letters.isEmpty
+      body:  alphProv.isLoading || alphProv.letters.isEmpty
           ? const Center(child: CircularProgressIndicator())
           : PageView.builder(
               itemCount: alphProv.letters.length,
