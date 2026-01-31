@@ -40,7 +40,7 @@ class WordCard extends StatelessWidget {
         assetPath,
         fit: BoxFit.contain,
         semanticsLabel: word.native,
-        placeholderBuilder: (context) => const Center(child: CircularProgressIndicator()),
+        // placeholderBuilder: (context) => const Center(child: CircularProgressIndicator()),
       );
     } else {
       imageWidget = Image.asset(
