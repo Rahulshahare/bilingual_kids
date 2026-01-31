@@ -29,7 +29,8 @@ class WordCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final assetPath = _ensureAssetPath(word.image);
+    // final assetPath = _ensureAssetPath(word.image);
+    final assetPath = word.image;
 
     print('WordCard for ${word.english}: original image path: ${word.image}, ensured: $assetPath');
 
