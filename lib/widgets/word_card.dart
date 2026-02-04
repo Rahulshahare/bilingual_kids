@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../models/word.dart';
 import '../utils/audio_helper.dart';
@@ -31,21 +31,43 @@ class WordCard extends StatelessWidget {
   Widget build(BuildContext context) {
     // final assetPath = _ensureAssetPath(word.image);
     final assetPath = word.image;
+    final isSvg = assetPath.toLowerCase().endsWith('.svg');
+    final isAlphabetSvg = isSvg && assetPath.toLowerCase().startsWith('assets/images/alphabets/');
 
     print('WordCard for ${word.english}: original image path: ${word.image}, ensured: $assetPath');
 
     Widget imageWidget;
-    if (assetPath.toLowerCase().endsWith('.svg')) {
-      imageWidget = SvgPicture.asset(
+    if (isSvg) {
+      final svg = SvgPicture.asset(
         assetPath,
         fit: BoxFit.contain,
         semanticsLabel: word.native,
         // placeholderBuilder: (context) => const Center(child: CircularProgressIndicator()),
       );
+
+      if (isAlphabetSvg && word.native.isNotEmpty) {
+        imageWidget = Stack(
+          alignment: Alignment.center,
+          children: [
+            svg,
+            Text(
+              word.native,
+              style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                    color: Colors.brown.shade900,
+                    fontWeight: FontWeight.w700,
+                  ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        );
+      } else {
+        imageWidget = svg;
+      }
     } else {
       imageWidget = Image.asset(
         assetPath,
         fit: BoxFit.contain,
+        semanticLabel: word.native,
         errorBuilder: (context, error, stack) {
           print('Failed to load image asset: $assetPath -> $error');
           return Center(

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/alphabets_provider.dart';
 import '../widgets/word_card.dart';
@@ -39,14 +39,28 @@ class _AlphabetsLearnScreenState extends State<AlphabetsLearnScreen> {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Learn Alphabet')),
-      body:  alphProv.isLoading || alphProv.letters.isEmpty
+      body: alphProv.isLoading
           ? const Center(child: CircularProgressIndicator())
-          : PageView.builder(
-              itemCount: alphProv.letters.length,
-              controller: _pageController,
-              onPageChanged: (idx) => alphProv.goTo(idx),
-              itemBuilder: (_, i) => WordCard(word: alphProv.letters[i]),
-            ),
+          : alphProv.letters.isEmpty
+              ? Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text('Alphabet data not found'),
+                      const SizedBox(height: 12),
+                      ElevatedButton(
+                        onPressed: () => alphProv.loadCourse(),
+                        child: const Text('Retry'),
+                      ),
+                    ],
+                  ),
+                )
+              : PageView.builder(
+                  itemCount: alphProv.letters.length,
+                  controller: _pageController,
+                  onPageChanged: (idx) => alphProv.goTo(idx),
+                  itemBuilder: (_, i) => WordCard(word: alphProv.letters[i]),
+                ),
     );
   }
 }
