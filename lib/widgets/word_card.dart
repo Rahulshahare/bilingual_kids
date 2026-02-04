@@ -42,23 +42,39 @@ class WordCard extends StatelessWidget {
         assetPath,
         fit: BoxFit.contain,
         semanticsLabel: word.native,
-        // placeholderBuilder: (context) => const Center(child: CircularProgressIndicator()),
+        allowDrawingOutsideViewBox: true,
+        placeholderBuilder: (context) => const Center(child: CircularProgressIndicator()),
       );
 
       if (isAlphabetSvg && word.native.isNotEmpty) {
-        imageWidget = Stack(
-          alignment: Alignment.center,
-          children: [
-            svg,
-            Text(
-              word.native,
-              style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                    color: Colors.brown.shade900,
-                    fontWeight: FontWeight.w700,
+        imageWidget = LayoutBuilder(
+          builder: (context, constraints) {
+            final shortestSide = constraints.biggest.shortestSide;
+            final fontSize = (shortestSide * 0.55).clamp(48.0, 200.0);
+
+            return Stack(
+              alignment: Alignment.center,
+              children: [
+                svg,
+                Positioned.fill(
+                  child: Center(
+                    child: Text(
+                      word.native,
+                      style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                            fontSize: fontSize,
+                            color: Colors.brown.shade900,
+                            fontWeight: FontWeight.w800,
+                            shadows: const [
+                              Shadow(offset: Offset(0, 1), blurRadius: 2, color: Colors.white),
+                            ],
+                          ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
-              textAlign: TextAlign.center,
-            ),
-          ],
+                ),
+              ],
+            );
+          },
         );
       } else {
         imageWidget = svg;
